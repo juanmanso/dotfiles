@@ -13,6 +13,22 @@ To install config repo in your `$HOME`, run:
 
 ## References
 
+### Other dotfile repos
+- [durdn/cfg](https://bitbucket.org/durdn/cfg/src/master/)
+  - [durdn/cfg/.bin/install.sh](https://bitbucket.org/durdn/cfg/src/master/.bin/install.sh)
+  - [durdn/cfg/.osx](https://bitbucket.org/durdn/cfg/src/master/.osx)
+- [mdumrauf/utils](https://github.com/mdumrauf/utils)
+- [amix/vimrc](https://github.com/amix/vimrc) _reference vimrc file_
+- [colbycheeze/dotfiles](https://github.com/colbycheeze/dotfiles/tree/master) _the guy from vim+tmux_
+
+#### Other (less interesting) dotfile repos
+- [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
+- [necolas/dotfiles](https://github.com/necolas/dotfiles)
+- [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles) _bunch of dotfiles and other related stuff_
+- [driesvints/dotfiles](https://github.com/driesvints/dotfiles)
+- [Unofficial guide to dotfiles on GitHub](https://dotfiles.github.io/)\
+
+
 ### Git bare
 - [How to store dotfiles](https://www.atlassian.com/git/tutorials/dotfiles)
 
