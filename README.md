@@ -23,11 +23,15 @@ To install config repo in your `$HOME`, run:
 
 #### Other (less interesting) dotfile repos
 - [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
+- [drduh/config](https://github.com/drduh/config)
+- [kud/my](https://github.com/kud/my) _a guy that several profiles_
 - [necolas/dotfiles](https://github.com/necolas/dotfiles)
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles) _bunch of dotfiles and other related stuff_
 - [driesvints/dotfiles](https://github.com/driesvints/dotfiles)
 - [Unofficial guide to dotfiles on GitHub](https://dotfiles.github.io/)\
 
+### Security
+- [drduh/macOS-Security-and-Privacy-Guide](https://github.com/drduh/macOS-Security-and-Privacy-Guide)
 
 ### Git bare
 - [How to store dotfiles](https://www.atlassian.com/git/tutorials/dotfiles)
