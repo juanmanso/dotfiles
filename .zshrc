@@ -3,6 +3,10 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/juanmanso/.oh-my-zsh"
+export GPG_TTY=$(tty)
+
+alias python=python3
+alias pip=pip3
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -99,3 +103,20 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias config='/usr/bin/git --git-dir=/Users/juanmanso/.cfg/ --work-tree=/Users/juanmanso'
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export ANDROID_HOME=~/Library/Android/sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+
+# Add necessary configuration for PyEnv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+#CFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix bzip2)/include -I$(brew --prefix readline)/include -I$(xcrun --show-sdk-path)/usr/include" LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix readline)/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+# Add Kubectl autocomplete
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+export PATH="$HOME/.poetry/bin:$PATH"
