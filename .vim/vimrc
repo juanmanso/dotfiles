@@ -1,0 +1,138 @@
+"" Juan Manso's vimrc
+"" NOTE: to refresh your vim instance, type ':so %'
+"" REFERENCE: | vimrc | vimrc-intro |
+
+"" ===========================================================================
+"" TABLE OF CONTENTS
+"" - Non-important configurations
+"" - Basic built-in vim configs
+"" 	- General configurations
+""	- Numbering
+""	- UTF encoding and colors
+""	- Fuzzy file search
+""	- File browsing
+""	- Tags configuration
+""	- Snippets
+"" ===========================================================================
+
+
+"" ===========================================================================
+"" Source a global configuration file if available
+if filereadable("/etc/vim/vimrc.local")
+  source /etc/vim/vimrc.local
+endif
+
+"" Uncomment the following to have Vim jump to the last position when
+"" reopening a file
+"if has("autocmd")
+"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"endif
+
+"" ===========================================================================
+"" BASIC CONFIG
+set nocompatible
+
+if has("syntax") " Enable syntax highlighting
+  syntax on
+endif
+
+if has("autocmd") " Load indentation rules and plugins
+  filetype plugin indent on
+endif
+
+"" Other basic configuration
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ruler		" Show on the bottom right 'line,column  %'
+"set ignorecase		" Do case insensitive matching
+"set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+"set autowrite		" Automatically save before commands like :next and :make
+"set hidden		" Hide buffers when they are abandoned
+"set cursorline		" highlight the current line
+set visualbell		" stop that ANNOYING beeping
+set wildmenu		" Display all matching files when we tab complete
+"set wildmode=list:longest,full
+
+if has('mouse')
+  set mouse=a		" Enable mouse usage (all modes)
+endif
+
+"" Config line numbering
+set number
+set numberwidth=5
+"" Toggle relative numbering, and set to absolute on loss of focus or insert mode
+set rnu			" Set relative numbering
+			" To disable type :set nornu or :set rnu!
+function! ToggleNumbersOn()
+	set nu!
+	set rnu
+endfunction
+function! ToggleRelativeOn()
+	set rnu!
+	set nu
+endfunction
+ autocmd FocusLost * call ToggleRelativeOn()
+ autocmd FocusGained * call ToggleRelativeOn()
+ autocmd InsertEnter * call ToggleRelativeOn()
+ autocmd InsertLeave * call ToggleRelativeOn()
+
+"" Set UTF-8
+set enc=utf-8
+set fileencoding=utf-8
+
+""" COLORS
+set background=dark
+"" Set the colorscheme (may try it while on vim with 
+"" :colo <name_of_color_scheme>
+ colorscheme torte
+"" Uncomment the following command for 256 colors
+set t_Co=256
+
+""" FZF:
+"" Search down into subfolders
+"" Provides tab-completion for all file-related tasks
+set path+=**
+
+"" NOW WE CAN:
+"" - Hit tab to :find by partial match
+"" - Use * to make it fuzzy
+
+"" THINGS TO CONSIDER:
+"" - :b lets you autocomplete any open buffer
+
+""" FILE BROWSING:
+"" Tweaks for browsing
+"let g:netrw_banner=0		" disable annoying banner
+"let g:netrw_browse_split=4	" open in prior window
+let g:netrw_altv=1		" open splits to the right
+let g:netrw_liststyle=3		" tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+
+""" TAG JUMPING:
+"" Create the `tags` file (may need to install ctags first)
+"TODO: Check if `ctags` is installed. If not, install it
+command! MakeTags !ctags -R .
+
+"" NOW WE CAN:
+"" - Use ^] to jump to tag under cursor
+"" - Use g^] for ambiguous tags
+"" - Use ^t to jump back up the tag stack
+
+"" THINGS TO CONSIDER:
+"" - This doesn't help if you want a visual list of tags
+
+
+""" SNIPPETS:
+"" Example for a snippet being inserted into the current file
+"nnoremap <Leader>html :-1read $HOME/.vim/snippets/.skeleton.html<CR>
+
+
+"" ===========================================================================
+
+""" BACKUP CONFIGS
+"" Set syntax highlighting for specific file types
+ autocmd BufRead,BufNewFile *.md set filetype=markdown
+
