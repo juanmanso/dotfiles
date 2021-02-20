@@ -6,18 +6,22 @@
 "" TABLE OF CONTENTS
 "" - Non-important configurations
 "" - Basic built-in vim configs
-"" 	- General configurations
+""  - General configurations
 ""	- Numbering
-""	- UTF encoding and colors
+""	- UTF encoding
 ""	- Fuzzy file search
 ""	- File browsing
 ""	- Tags configuration
 ""	- Snippets
+"" - Plugins
+"" - Plugin-specific configurations
+""  - Airline
+""  - Colors
 "" ===========================================================================
 
 
 "" ===========================================================================
-"" Source a global configuration file if available
+""" Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
@@ -29,7 +33,7 @@ endif
 "endif
 
 "" ===========================================================================
-"" BASIC CONFIG
+""" BASIC CONFIG
 set nocompatible
 
 if has("syntax") " Enable syntax highlighting
@@ -41,18 +45,41 @@ if has("autocmd") " Load indentation rules and plugins
 endif
 
 "" Other basic configuration
-set showcmd		" Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-set ruler		" Show on the bottom right 'line,column  %'
-"set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
-set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
-"set hidden		" Hide buffers when they are abandoned
-"set cursorline		" highlight the current line
-set visualbell		" stop that ANNOYING beeping
-set wildmenu		" Display all matching files when we tab complete
+set showcmd		            " Show (partial) command in status line.
+set showmatch		        " Show matching brackets.
+set ruler		            " Show on the bottom right 'line,column  %'
+"set ignorecase		        " Do case insensitive matching
+"set smartcase		        " Do smart case matching
+set incsearch		        " Incremental search
+"set autowrite		        " Automatically save be4 cmds like :next and :make
+"set hidden		            " Hide buffers when they are abandoned
+"set cursorline		        " highlight the current line
+set visualbell		        " stop that ANNOYING beeping
+set wildmenu		        " Display all matching files when we tab complete
 "set wildmode=list:longest,full
+set autoread                " auto read files changed outside vim
+"set clipboard=unnamedplus   " use the system clipboard
+set colorcolumn=80          " highlight max length column
+
+"" Tab default settings
+"" -> For consistency, set everything to the same value
+set tabstop=4		" Number of columns of whitespace per tab
+set shiftwidth=4	" Number of columns per indent
+set softtabstop=4	" Number of columns per tab and space
+set expandtab		" Expand tabs to spaces
+
+"" Split management
+"" -> Configure splits to behave as I find it more natural
+set splitbelow      " New pane will be placed below, with the cursor
+set splitright      " New pane will be placed on the right
+"" -> Give scrolling some room
+if !&scrolloff
+  "set scrolloff=3       " Show next 3 lines while scrolling
+endif
+if !&sidescrolloff
+  "set sidescrolloff=5   " Show next 5 columns while side-scrolling
+endif
+""
 
 if has('mouse')
   set mouse=a		" Enable mouse usage (all modes)
@@ -61,16 +88,16 @@ endif
 "" Config line numbering
 set number
 set numberwidth=5
-"" Toggle relative numbering, and set to absolute on loss of focus or insert mode
-set rnu			" Set relative numbering
-			" To disable type :set nornu or :set rnu!
+"" Toggle relative numbering, set to absolute on loss of focus or insert mode
+set rnu			    " Set relative numbering
+                    " To disable type :set nornu or :set rnu!
 function! ToggleNumbersOn()
-	set nu!
-	set rnu
+    set nu!
+    set rnu
 endfunction
 function! ToggleRelativeOn()
-	set rnu!
-	set nu
+    set rnu!
+    set nu
 endfunction
  autocmd FocusLost * call ToggleRelativeOn()
  autocmd FocusGained * call ToggleRelativeOn()
@@ -80,14 +107,6 @@ endfunction
 "" Set UTF-8
 set enc=utf-8
 set fileencoding=utf-8
-
-""" COLORS
-set background=dark
-"" Set the colorscheme (may try it while on vim with 
-"" :colo <name_of_color_scheme>
- colorscheme torte
-"" Uncomment the following command for 256 colors
-set t_Co=256
 
 """ FZF:
 "" Search down into subfolders
@@ -105,7 +124,7 @@ set path+=**
 "" Tweaks for browsing
 "let g:netrw_banner=0		" disable annoying banner
 "let g:netrw_browse_split=4	" open in prior window
-let g:netrw_altv=1		" open splits to the right
+let g:netrw_altv=1		    " open splits to the right
 let g:netrw_liststyle=3		" tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 "let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
@@ -129,6 +148,61 @@ command! MakeTags !ctags -R .
 "" Example for a snippet being inserted into the current file
 "nnoremap <Leader>html :-1read $HOME/.vim/snippets/.skeleton.html<CR>
 
+"" ===========================================================================
+""" PLUGINS
+"" -> We will use vim-plug to manage plugins!
+
+"" Download vim-plug if missing
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
+
+"" List below which plugins to download
+call plug#begin('~/.vim/plugged')
+
+"" Language and filetype specific plugins
+Plug 'cespare/vim-toml'             " Syntax highlighting for TOML
+
+"" Make it good looking 😏
+Plug 'notpratheek/vim-luna'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+"" Other functionalities
+Plug 'tpope/vim-surround'           " Alter surrounding chars: ys, cs, ss
+Plug 'tpope/vim-repeat'             " Enable dot operation on plugins
+Plug 'tpope/vim-commentary'         " Toggle commenting text: gc, gcc
+"" -> Yet to be tested
+"Plug 'vimpostor/vim-tpipeline'      " Embed VIM's stat line into tmux
+
+""" MORE PLUGGINS HERE: ~/.vim/plug_rec.vim
+
+call plug#end()
+
+"" ===========================================================================
+""" PLUGIN SPECIFIC CONFIGURATION
+"" Every configuration starts with the filereadable if-statement to apply
+"" these configurations when plugin is installed only
+
+"" To browse to each specific configuration, type `gf` on normal mode with the
+"" cursor anywhere on the path string to the file
+
+" Airline   [Extra cute status bar]
+if filereadable(glob("~/.vim/plugged/vim-airline/plugin/airline.vim"))
+    source ~/.vim/conf/airline.conf.vim
+endif
+
+""" COLORS
+set background=dark
+if filereadable(glob("~/.vim/plugged/vim-luna/colors/luna-term.vim"))
+    colorscheme luna-term
+else
+    colorscheme torte
+endif
+"" Uncomment the following command for 256 colors
+set t_Co=256
 
 "" ===========================================================================
 

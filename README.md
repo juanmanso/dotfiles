@@ -18,8 +18,11 @@ To install config repo in your `$HOME`, run:
   - [durdn/cfg/.bin/install.sh](https://bitbucket.org/durdn/cfg/src/master/.bin/install.sh)
   - [durdn/cfg/.osx](https://bitbucket.org/durdn/cfg/src/master/.osx)
 - [mdumrauf/utils](https://github.com/mdumrauf/utils)
-- [amix/vimrc](https://github.com/amix/vimrc) _reference vimrc file_
 - [colbycheeze/dotfiles](https://github.com/colbycheeze/dotfiles/tree/master) _the guy from vim+tmux_
+
+#### vimrc's
+- [Max Cantor's vimrc](https://github.com/changemewtf/dotfiles/blob/master/vim/.vimrc)
+- [amix/vimrc](https://github.com/amix/vimrc) _reference vimrc file_
 
 #### Other (less interesting) dotfile repos
 - [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
