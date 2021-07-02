@@ -1,0 +1,63 @@
+# This is Git's per-user configuration file.
+[user]
+  name = Juan Manso
+  email = juan.manso@southworks.com
+  signingkey = 474A623E9C13F1A2
+
+[gpg]
+  program = gpg
+
+[commit]
+  gpgsign = false
+
+[alias]
+  ft = fetch
+  ftp = fetch -p
+  st = status
+  ci = commit
+  cim = commit -m
+  ciam = commit -a -m
+  cp = cherry-pick
+  rb = rebase
+  rbi = rebase -i
+  rbm = rebase origin/master
+  rbd = rebase origin/develop
+  unstage = reset HEAD
+  uncommit = reset --soft HEAD^
+  br = branch -v
+  bra = branch -a
+  co = checkout
+  cob = checkout -B
+  df = diff
+  l = log --decorate --graph
+  lg = log --stat --decorate --graph
+  up = pull --rebase origin master
+  dc = diff --cached
+  ph = push origin HEAD
+  phf = push origin HEAD -f
+  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|main\\|dev' | xargs -n 1 git branch -d"
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  editor = vim
+
+[pull]
+  ff = only

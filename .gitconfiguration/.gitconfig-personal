@@ -1,0 +1,9 @@
+# Personal gitconfig
+[user]
+	name = Juan Manso
+	email = juanmanso@gmail.com
+	signingkey = D192D076B5687399
+
+[commit]
+	gpgsign = true
+
