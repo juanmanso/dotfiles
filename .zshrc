@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+
+fpath+=~/.zfunc
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/juanmanso/.oh-my-zsh"
@@ -119,4 +122,8 @@ eval "$(pyenv virtualenv-init -)"
 # Add Kubectl autocomplete
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
+# Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Poe the poet
+alias poe="poetry run poe"

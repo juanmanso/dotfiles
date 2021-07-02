@@ -17,6 +17,7 @@
 "" - Plugin-specific configurations
 ""  - Airline
 ""  - Colors
+""  - Markdown
 "" ===========================================================================
 
 
@@ -36,6 +37,15 @@ endif
 """ BASIC CONFIG
 set nocompatible
 
+"" Redefine <ESC> to the key next to the 1 on the MacBook Pro with touchbar
+inoremap § <ESC>
+nnoremap § <ESC>
+cnoremap § <ESC>
+noremap § <ESC>
+
+"" Define <LEADER> to spacebar
+let mapleader = ' '
+
 if has("syntax") " Enable syntax highlighting
   syntax on
 endif
@@ -48,18 +58,23 @@ endif
 set showcmd		            " Show (partial) command in status line.
 set showmatch		        " Show matching brackets.
 set ruler		            " Show on the bottom right 'line,column  %'
-"set ignorecase		        " Do case insensitive matching
-"set smartcase		        " Do smart case matching
-set incsearch		        " Incremental search
-"set autowrite		        " Automatically save be4 cmds like :next and :make
-"set hidden		            " Hide buffers when they are abandoned
-"set cursorline		        " highlight the current line
-set visualbell		        " stop that ANNOYING beeping
+"set ignorecase		         " Do case insensitive matching
+"set smartcase		         " Do smart case matching
+"set hlsearch                " Highlight all matches until new search
+set incsearch		        " Incremental search while typing
+"set autowrite		         " Automatically save be4 cmds like :next and :make
+"set hidden		             " Hide buffers when they are abandoned
+"set cursorline		         " Highlight the current line
+set visualbell		        " Stop that ANNOYING beeping
 set wildmenu		        " Display all matching files when we tab complete
+set wildignore+=**/__pycache__/**,**/node_modules/**,**/_build/**
 "set wildmode=list:longest,full
-set autoread                " auto read files changed outside vim
-"set clipboard=unnamedplus   " use the system clipboard
-set colorcolumn=80          " highlight max length column
+set autoread                " Auto read files changed outside vim
+"set clipboard=unnamedplus   " Use the system clipboard
+set colorcolumn=80          " Highlight max length column
+set noswapfile              " Disable the swap file generation
+set nostartofline           " When navigating, don't go to the start of the line
+" set nowrap                  " Don't wrap text when screen width is narrower
 
 "" Tab default settings
 "" -> For consistency, set everything to the same value
@@ -67,6 +82,14 @@ set tabstop=4		" Number of columns of whitespace per tab
 set shiftwidth=4	" Number of columns per indent
 set softtabstop=4	" Number of columns per tab and space
 set expandtab		" Expand tabs to spaces
+
+"" List/Viz of special characters
+set list
+set listchars=tab:\ \ ,trail:·
+"" For mor extended chars, uncomment below
+" set showbreak=↪\
+" set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+
 
 "" Split management
 "" -> Configure splits to behave as I find it more natural
@@ -79,11 +102,17 @@ endif
 if !&sidescrolloff
   "set sidescrolloff=5   " Show next 5 columns while side-scrolling
 endif
-""
+"" Split resizing
+set winwidth=105
+set winheight=5
+set winminheight=5
+set winheight=999
 
-if has('mouse')
-  set mouse=a		" Enable mouse usage (all modes)
-endif
+
+"" Spell checking on markdown + completion
+autocmd BufRead,BufNewFile *.md setlocal spell
+set complete+=kspell
+
 
 "" Config line numbering
 set number
@@ -103,6 +132,11 @@ endfunction
  autocmd FocusGained * call ToggleRelativeOn()
  autocmd InsertEnter * call ToggleRelativeOn()
  autocmd InsertLeave * call ToggleRelativeOn()
+
+
+if has('mouse')
+  set mouse=a		" Enable mouse usage (all modes)
+endif
 
 "" Set UTF-8
 set enc=utf-8
@@ -127,6 +161,7 @@ set path+=**
 let g:netrw_altv=1		    " open splits to the right
 let g:netrw_liststyle=3		" tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.='.DS_Store'
 "let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 
@@ -163,7 +198,12 @@ endif
 call plug#begin('~/.vim/plugged')
 
 "" Language and filetype specific plugins
-Plug 'cespare/vim-toml'             " Syntax highlighting for TOML
+"Plug 'cespare/vim-toml'             " Syntax highlighting for TOML | Replaced
+"                                    "by `dosini` which does the trick
+Plug 'tpope/vim-markdown'           " Enhanced features for MD
+
+"" Integration of other software into vim
+" Plug 'editorconfig/editorconfig-vim'
 
 "" Make it good looking 😏
 Plug 'notpratheek/vim-luna'
@@ -204,9 +244,30 @@ endif
 "" Uncomment the following command for 256 colors
 set t_Co=256
 
+""" Markdown
+if filereadable(glob("~/.vim/plugged/vim-markdown/ftplugin/markdown.vim"))
+    let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'yaml', 'haml', 'bash=sh', 'toml=dosini']
+endif
+
+""" EditorConfig
+if filereadable(glob("~/.vim/plugged/editorconfig-vim/plugin/editorconfig.vim"))
+    Plug 'vim-scripts/PreserveNoEOL'    " Required for editorconfig to work
+    let g:EditorConfig_verbose = 0
+    let g:EditorConfig_core_mode = 'external_command'
+endif
+
 "" ===========================================================================
 
 """ BACKUP CONFIGS
 "" Set syntax highlighting for specific file types
  autocmd BufRead,BufNewFile *.md set filetype=markdown
 
+ autocmd BufReadPost *.toml set syntax=dosini
+ autocmd BufRead,BufNewFile .flake8 set syntax=dosini
+ autocmd BufRead,BufNewFile .gitlint set syntax=dosini
+ autocmd BufRead,BufNewFile .darglint set syntax=dosini
+
+ set dictionary+=/usr/share/dict/words
+
+ autocmd BufNewFile,BufRead ~/Documents/mine/pdi/* set nospell
+ autocmd BufNewFile,BufRead ~/Documents/mine/pdi/* set noexpandtab

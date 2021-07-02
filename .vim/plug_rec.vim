@@ -15,7 +15,6 @@
 "Plug 'joker1007/vim-ruby-heredoc-syntax'
 "Plug 'AndrewRadev/writable_search.vim'
 "Plug 'suan/vim-instant-markdown'
-"Plug 'editorconfig/editorconfig-vim'
 "Plug 'embear/vim-localvimrc'
 "Plug 'tpope/vim-liquid'
 "Plug 'tpope/vim-markdown'
@@ -29,6 +28,7 @@
 "Plug 'tpope/vim-eunuch'
 "Plug 'scrooloose/nerdtree'
 
+
 "" Plugin recommendations by Chris Toomey
 "Plug 'inkarkat/vim-ReplaceWithRegister'
 "Plug 'christoomey/vim-titlecase'
@@ -38,6 +38,7 @@
 "Plug 'kana/vim-textobj-entire'
 "Plug 'line.vim'
 
+
 "" Plugin recommendations by charly
 "Plug 'https://github.com/itchyny/lightline.vim.git'
 "Plug 'https://github.com/ap/vim-buftabline.git'
@@ -45,6 +46,7 @@
 "Plug 'https://github.com/vim-scripts/Mark--Karkat'
 "Plug 'https://github.com/chrisbra/vim-diff-enhanced'
 "Plug 'https://github.com/vim-scripts/DirDiff.vim'
+
 
 "" Plugin recommendations by James B Vaughan
 "  " These are plugins for specific languages
@@ -80,3 +82,16 @@
   " These just make things pretty
 "   Plug 'dylanaraps/wal.vim'
 "   Plug 'sheerun/vim-polyglot'
+
+
+
+"" Recommendation for iVim (iPad)
+""https://github.com/suliveevil/Awesome-Plugins-iVim
+
+""///// PYTHON ////
+" Jupter-vim
+"https://github.com/jupyter-vim/jupyter-vim.git
+"
+" Pythonsens
+"https://github.com/jeetsukumaran/vim-pythonsense.git
+"
