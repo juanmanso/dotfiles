@@ -13,3 +13,4 @@ fi;
 config checkout
 config config status.showUntrackedFiles no
 
+# brew install --cask amethyst

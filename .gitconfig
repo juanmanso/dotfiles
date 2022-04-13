@@ -1,14 +1,14 @@
 # This is Git's per-user configuration file.
 [user]
   name = Juan Manso
-  email = juan.manso@southworks.com
-  signingkey = 474A623E9C13F1A2
+  email = juanmanso@gmail.com
+  signingkey = B050AB12F5C652B13D661C3B8941A280AFBAB8A2
 
 [gpg]
   program = gpg
 
 [commit]
-  gpgsign = false
+  gpgsign = true
 
 [alias]
   ft = fetch
@@ -61,3 +61,5 @@
 
 [pull]
   ff = only
+[diff]
+	tool = vimdiff

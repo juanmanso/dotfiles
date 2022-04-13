@@ -267,6 +267,8 @@ endif
  autocmd BufRead,BufNewFile .gitlint set syntax=dosini
  autocmd BufRead,BufNewFile .darglint set syntax=dosini
 
+ autocmd BufRead,BufNewFile *Podfile* set syntax=ruby
+
  set dictionary+=/usr/share/dict/words
 
  autocmd BufNewFile,BufRead ~/Documents/mine/pdi/* set nospell
