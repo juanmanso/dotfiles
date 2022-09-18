@@ -117,8 +117,18 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias config='/usr/bin/git --git-dir=/Users/juam/.cfg/ --work-tree=/Users/juam'
-# export PATH="/usr/local/opt/openjdk/Contents/Home/bin:$PATH"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/"
+
+## java config
+export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/"
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+export JAVA_18_HOME=$(/usr/libexec/java_home -v18)
+
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+alias java18='export JAVA_HOME=$JAVA_18_HOME'
+
+# default to Java 11
+java11
 export PATH="$PATH:$JAVA_HOME"
 export ANDROID_HOME=~/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
