@@ -30,8 +30,8 @@
   co = checkout
   cob = checkout -B
   df = diff
-  l = log --decorate --graph
-  lg = log --stat --decorate --graph
+  l = log --decorate --graph --oneline
+  lg = log --stat --decorate --graph --oneline
   up = pull --rebase origin master
   dc = diff --cached
   ph = push origin HEAD
