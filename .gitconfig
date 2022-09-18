@@ -20,8 +20,9 @@
   cp = cherry-pick
   rb = rebase
   rbi = rebase -i
-  rbm = rebase origin/master
-  rbd = rebase origin/develop
+  rbm = rebase -i origin/master
+  rbd = rebase -i origin/develop
+  rbs = rebase -i origin/staging
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   br = branch -v
