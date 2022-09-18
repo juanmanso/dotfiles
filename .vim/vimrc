@@ -78,9 +78,9 @@ set nostartofline           " When navigating, don't go to the start of the line
 
 "" Tab default settings
 "" -> For consistency, set everything to the same value
-set tabstop=4		" Number of columns of whitespace per tab
-set shiftwidth=4	" Number of columns per indent
-set softtabstop=4	" Number of columns per tab and space
+set tabstop=2		" Number of columns of whitespace per tab
+set shiftwidth=2	" Number of columns per indent
+set softtabstop=2	" Number of columns per tab and space
 set expandtab		" Expand tabs to spaces
 
 "" List/Viz of special characters
