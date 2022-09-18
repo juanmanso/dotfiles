@@ -37,6 +37,7 @@
   ph = push -u origin HEAD
   phf = push -u origin HEAD -f
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|main\\|dev' | xargs -n 1 git branch -d"
+  fix-reference = git gc --prune=now
 
 [color]
   ui = auto
@@ -63,4 +64,4 @@
 [pull]
   ff = only
 [diff]
-	tool = vimdiff
+  tool = vimdiff
