@@ -34,8 +34,8 @@
   lg = log --stat --decorate --graph --oneline
   up = pull --rebase origin master
   dc = diff --cached
-  ph = push origin HEAD
-  phf = push origin HEAD -f
+  ph = push -u origin HEAD
+  phf = push -u origin HEAD -f
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|main\\|dev' | xargs -n 1 git branch -d"
 
 [color]
