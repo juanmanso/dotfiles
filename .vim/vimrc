@@ -16,6 +16,7 @@
 "" - Plugins
 "" - Plugin-specific configurations
 ""  - Airline
+""  - ALE
 ""  - Colors
 ""  - Markdown
 "" ===========================================================================
@@ -210,6 +211,9 @@ Plug 'notpratheek/vim-luna'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+"" Lint 'em all
+Plug 'dense-analysis/ale'
+
 "" Other functionalities
 Plug 'tpope/vim-surround'           " Alter surrounding chars: ys, cs, ss
 Plug 'tpope/vim-repeat'             " Enable dot operation on plugins
@@ -233,6 +237,33 @@ call plug#end()
 if filereadable(glob("~/.vim/plugged/vim-airline/plugin/airline.vim"))
     source ~/.vim/conf/airline.conf.vim
 endif
+
+"" ALE
+let g:ale_linters = {
+      \ 'javascript': ['eslint'],
+      \ 'typescriptreact': ['eslint'],
+      \ 'python': ['flake8', 'pydocstyle', 'bandit', 'mypy'],
+      \}
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'javascript': ['prettier'],
+      \ 'typescriptreact': ['prettier'],
+      \ 'python': ['black', 'isort'],
+      \}
+let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+""" ALE - JS specific
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
+
+""" ALE - Python specific
+let g:ale_python_flake8_options = '--max-line-length 88 --extend-ignore=E203'
 
 """ COLORS
 set background=dark
