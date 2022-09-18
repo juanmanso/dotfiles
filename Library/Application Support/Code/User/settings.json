@@ -13,6 +13,9 @@
     "*": true,
     "yaml": false,
     "plaintext": true,
-    "markdown": false
-  }
+    "markdown": true
+  },
+  "editor.bracketPairColorization.enabled": false,
+  "merge-conflict.diffViewPosition": "Beside",
+  "git.mergeEditor": false
 }
