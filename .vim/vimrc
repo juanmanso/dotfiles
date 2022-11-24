@@ -76,6 +76,8 @@ set colorcolumn=80          " Highlight max length column
 set noswapfile              " Disable the swap file generation
 set nostartofline           " When navigating, don't go to the start of the line
 " set nowrap                  " Don't wrap text when screen width is narrower
+set foldmethod=indent       " Use indent as default folding method
+set nofoldenable            " Avoid folding the file when opening it
 
 "" Tab default settings
 "" -> For consistency, set everything to the same value
@@ -114,6 +116,9 @@ set winheight=999
 autocmd BufRead,BufNewFile *.md setlocal spell
 set complete+=kspell
 
+"" Set folding method to indent (use zc to close, zo to open, zr open a lvl,
+""    zm close a lvl, zR open all, zM close all)
+set foldmethod=indent
 
 "" Config line numbering
 set number
@@ -241,12 +246,14 @@ endif
 "" ALE
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
+      \ 'typescript': ['eslint'],
       \ 'typescriptreact': ['eslint'],
       \ 'python': ['flake8', 'pydocstyle', 'bandit', 'mypy'],
       \}
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'javascript': ['prettier'],
+      \ 'typescript': ['prettier'],
       \ 'typescriptreact': ['prettier'],
       \ 'python': ['black', 'isort'],
       \}
@@ -259,8 +266,13 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 """ ALE - JS specific
+let g:ale_typescript_prettier_use_local_config = 1
+let g:ale_typescript_eslint_use_local_config = 1
+let g:ale_typescript_prettier_use_local_config = 1
+let g:ale_typescriptreact_eslint_use_local_config = 1
 let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
+let g:ale_javascript_eslint_use_local_config = 1
+let g:ale_javascript_prettier_options = '--trailing-whitespace all --arrow-parens avoid --jsx-bracket-same-line --bracket-spacing'
 
 """ ALE - Python specific
 let g:ale_python_flake8_options = '--max-line-length 88 --extend-ignore=E203'
@@ -307,3 +319,19 @@ endif
 
  autocmd BufNewFile,BufRead ~/Documents/mine/pdi/* set nospell
  autocmd BufNewFile,BufRead ~/Documents/mine/pdi/* set noexpandtab
+
+ "" Vim folding
+  function! BlockFolds()
+     let thisline = getline(v:lnum)
+     if match(thisline, '^\"\"\ =') >= 0
+        return ">1"
+     else
+        return "="
+     endif
+  endfunction
+
+"" Set fold expr to fold as delimited by first ("" ===...)  expr
+ autocmd BufRead,BufNewFile ~/.vim/vimrc set foldmethod=expr
+ autocmd BufRead,BufNewFile ~/.vim/vimrc set foldexpr=BlockFolds()
+"" Set to show first line's content
+ autocmd BufRead,BufNewFile ~/.vim/vimrc set foldtext=getline(v:foldstart+1)
