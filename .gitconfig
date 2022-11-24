@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-  name = Juan Manso
+	name = juam
   email = juanmanso@gmail.com
   signingkey = B050AB12F5C652B13D661C3B8941A280AFBAB8A2
 
@@ -36,6 +36,7 @@
   dc = diff --cached
   ph = push -u origin HEAD
   phf = push -u origin HEAD -f
+  clean-untracked = clean -f -d
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|main\\|dev' | xargs -n 1 git branch -d"
   fix-reference = git gc --prune=now
 
@@ -65,3 +66,8 @@
   ff = only
 [diff]
   tool = vimdiff
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
