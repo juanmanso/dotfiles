@@ -153,3 +153,4 @@ export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tool
 
 alias xbarPlugins="cd /Users/juam/Library/Application Support/xbar/plugins"
 
+alias clearXCodeCache="rm -rf ~/Library/Developer/Xcode/DerivedData"
