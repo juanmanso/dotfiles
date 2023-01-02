@@ -5,12 +5,13 @@ export PATH=$HOME/.local/bin:$PATH
 fpath+=~/.zfunc
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/juam/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export GPG_TTY=$(tty)
 
 # Path to NVM
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Ruby stuff
 export PATH=/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.1.0/bin:$PATH
