@@ -160,3 +160,10 @@ export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tool
 # alias xbarPlugins="cd /Users/juam/Library/Application Support/xbar/plugins"
 
 alias clearXCodeCache="rm -rf ~/Library/Developer/Xcode/DerivedData"
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
