@@ -152,6 +152,6 @@ export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tool
 # Poe the poet
 # alias poe="poetry run poe"
 
-alias xbarPlugins="cd /Users/juam/Library/Application Support/xbar/plugins"
+# alias xbarPlugins="cd /Users/juam/Library/Application Support/xbar/plugins"
 
 alias clearXCodeCache="rm -rf ~/Library/Developer/Xcode/DerivedData"
