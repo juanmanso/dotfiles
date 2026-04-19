@@ -20,9 +20,12 @@
   cp = cherry-pick
   rb = rebase
   rbi = rebase -i
-  rbm = rebase -i origin/master
+  rbm = rebase -i origin/main
   rbd = rebase -i origin/develop
   rbs = rebase -i origin/staging
+  rbr = rebase -i --root
+  ; fixup = "!sh -c 'git commit --fixup=$(git log --oneline --decorate=full | fzf | awk ''{print $1}'')'"
+  fixup = commit --fixup
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   br = branch -v
