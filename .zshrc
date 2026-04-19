@@ -8,7 +8,7 @@ fpath+=~/.zfunc
 export ZSH="$HOME/.oh-my-zsh"
 export GPG_TTY=$(tty)
 
-# Path to NVM
+## Path to NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -120,16 +120,17 @@ source $ZSH/oh-my-zsh.sh
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 ## java config
-export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/"
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-export JAVA_18_HOME=$(/usr/libexec/java_home -v18)
+# export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/"
+# export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+# export JAVA_18_HOME=$(/usr/libexec/java_home -v18)
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
-alias java18='export JAVA_HOME=$JAVA_18_HOME'
+# alias java8='export JAVA_HOME=$JAVA_8_HOME'
+# alias java11='export JAVA_HOME=$JAVA_11_HOME'
+# alias java18='export JAVA_HOME=$JAVA_18_HOME'
 
-# default to Java 11
-java11
+# # default to Java 11
+# java11
 export PATH="$PATH:$JAVA_HOME"
 export ANDROID_HOME=~/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
