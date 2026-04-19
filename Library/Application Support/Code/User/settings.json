@@ -17,5 +17,36 @@
   },
   "editor.bracketPairColorization.enabled": false,
   "merge-conflict.diffViewPosition": "Beside",
-  "git.mergeEditor": false
+  "git.mergeEditor": false,
+  "python.defaultInterpreterPath": "/Users/juam/.pyenv/versions/3.10.9/bin/python",
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "eslint.codeActionsOnSave.rules": null,
+  "[solidity]": {
+    "editor.defaultFormatter": "JuanBlanco.solidity"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": {
+    "*.abi": "json"
+  },
+  // "solidity.packageDefaultDependenciesContractsDirectory": "",
+  // "solidity.packageDefaultDependenciesDirectory": "node_modules",
+  "scm.showIncomingChanges": "never",
+  "scm.showOutgoingChanges": "never",
+  "scm.showHistoryGraph": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "cSpell.userWords": [
+    "ellipsize",
+    "Parens",
+    "passcodes",
+    "Pressable",
+    "quantinium"
+  ],
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "**/node_modules/react-native-reanimated/lib/typescript/Animated.d.ts"
+  ],
+  "github.copilot.chat.agent.thinkingTool": true
 }
