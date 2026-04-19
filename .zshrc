@@ -167,3 +167,8 @@ alias clearXCodeCache="rm -rf ~/Library/Developer/Xcode/DerivedData"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# OpenSSL configuration
+export LDFLAGS="-L$(brew --prefix openssl@3)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl@3)/include"
+export PKG_CONFIG_PATH="$(brew --prefix openssl@3)/lib/pkgconfig"
