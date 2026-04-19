@@ -18,8 +18,14 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-alias python=python3
-alias pip=pip3
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# Make sure pyenv is initialized properly
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -145,12 +151,6 @@ export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tool
 
 # Add Kubectl autocomplete
 # [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
-
-# Poetry
-# export PATH="$HOME/.poetry/bin:$PATH"
-
-# Poe the poet
-# alias poe="poetry run poe"
 
 # alias xbarPlugins="cd /Users/juam/Library/Application Support/xbar/plugins"
 
