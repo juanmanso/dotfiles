@@ -172,3 +172,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export LDFLAGS="-L$(brew --prefix openssl@3)/lib"
 export CPPFLAGS="-I$(brew --prefix openssl@3)/include"
 export PKG_CONFIG_PATH="$(brew --prefix openssl@3)/lib/pkgconfig"
+
+# Task Master aliases added on 7/14/2025
+alias tm='task-master'
+alias taskmaster='task-master'
